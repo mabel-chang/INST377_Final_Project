@@ -136,39 +136,29 @@ h2,h3 {
   color: white;
 }
 
-
 /*Footer*/
 .footer {
   flex-shrink: 0;
   padding: 1rem;
-  /*background-color: hsl(217, 28%, 79%);*/
+  background-color: rgba(229,229,229,255);
   font-size: 1.2rem;
   font-weight: 600;
   border: 2px dotted;
-  background: white;
 }
 .footer a {
-  color: rgba(229,229,229,255);
+  color: grey;
   text-decoration: underline;
 }
-/*
-    This is an example of a 'pseudoclass'
-    In this instance, it says what to do if a mouse hovers over a link
-    This is pretty desktop-specific, since there's no hover function on touchscreens
-  */
 .footer a:hover {
-  /* Hue, saturation, luminosity, alpha */
   background-color: rgba(229,229,229,255);
-  /* red, green, blue, alpha */
   color: hsl(216, 90%, 30%);
-  text-decoration: none;
 }
 
 /* How To Write A Media Query For Small Screens */
-@media only screen and (max-width: 736px) {
+/*@media only screen and (max-width: 736px) {
   /* Rules in here will only apply when a screen is the correct size */
   /* check it out by using your developer tools to shrink your screen-size */
-  .container {
+  /*.container {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -199,16 +189,16 @@ h2,h3 {
   .right_section {
     /*max-width: 450px;
         specific width mentioned in lecutre but does not directly match lab assignment page*/
-    background-color: hsl(217, 28%, 79%);
+    /*background-color: hsl(217, 28%, 79%);
     flex: 1 2 auto;
     margin: 1rem;
     align-items: flex-start; /*flex-start in media mode*/
-    display: flex;
+    /*display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 94%;
   }
-}
+}*/
 /*form {
     accent-color: hsl(129, 100%, 50%);
   }*/
