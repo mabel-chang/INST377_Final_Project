@@ -14,6 +14,7 @@
 
   <body>
     <!--TITLE BANNER + Menu-->
+    <!--Will need to add a pop up/drop down in case info is inputted wrong-->
     <banner class="banner">
       <!--Title-->
       <header class="header">
@@ -22,20 +23,15 @@
 
       <!--Menu Button-->
       <div>
-        <button class="menu_button"><img src="menu_image.png"/></button>
-        <!--Dropdown menu not working right now-->
-        <div class="menu_content">
-          <a href="./pages/about">About</a>
-          <a href="./pages/tracker">Tracker</a>
-        </div>
+        <button class="icon" type="button" id="aboutButton"><img src="info.png"/></button>
       </div>
     </banner>
 
     <!--MAIN BODY-->
     <div class="wrapper">
       <!--Page title-->
-      <div>
-        <h2>Home</h2>
+      <div class="icon">
+        <img src="home.png"/>
       </div>
       
       <!--Long Lat inputs from the user-->
@@ -69,12 +65,7 @@
     <!--Footer-->
     <footer class="footer a">
       Mabel Chang's INST377 Final Project:
-      <a
-        href="https://github.com/mabel-chang/INST377_Final_Project"
-        target="_blank"
-        rel="noopener noreferrer"
-        >mabel-chang</a
-      >
+      <a href="https://github.com/mabel-chang/INST377_Final_Project" target="_blank" rel="noopener noreferrer">mabel-chang</a>
     </footer>
 
     <script src="./script.js"></script>
