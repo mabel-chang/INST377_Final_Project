@@ -1,3 +1,8 @@
+/*COLORS:
+Pop out boxes: rgba(229,229,229,255)
+Overall Background color: rgb(196, 205, 199)
+*/
+
 * {
   box-sizing: border-box;
 }
@@ -37,20 +42,24 @@ h2,h3 {
   position: fixed;
   background-color: rgba(229,229,229,255);
   width: 100%;
-  border: 1px dotted #000;
+  padding: 16px;
+  border: 1px dashed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-/*Main Title*/
+  /*Main Title*/
 .header {
-  width: 800px;
   margin: 0 auto;
-  font-size: large;
+  font-size: 300%;
+  font-weight: 600;
 }
-/*Menu Formatting*/
-.menu_button {
-  width: 10px;
-  height: 10px;
+  /*Menu Formatting*/
+.menu_button img {
+  width: 30px;
+  height: 30px;
 }
-/*GO THROUGH THIS!!!! Menu content formatting (works for now but need to integrate into JS later*/
+  /*GO THROUGH THIS!!!! Menu content formatting (not working need to integrate js)*/
 .menu_content {
   display: none;
   position: absolute;
@@ -79,63 +88,56 @@ h2,h3 {
   flex-direction: column;
   margin: 0;
   flex: 1;
-  padding-top: 100px;
-  background: white;
+  padding-left: 15px;
+  padding-top: 120px;
+  background: rgb(196, 205, 199);
 }
-
-.container {
-  margin: 0 20px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: start;
-  flex: 1;
-}
-
-/*
-    Rules can be combined on a block to apply the 'cascade' in order
-    So you can use two classnames in a single class attribute
-    like: <div class="box section">
-  
-    Rules may combine in unexpected ways - remember that the LAST thing written in this file will have "priority"
-    And will be what displays in your client
-  */
-
 .box {
-  background-color: hsl(217, 28%, 79%);
+  background-color: rgba(229,229,229,255);
   border: 2px dashed;
   border-radius: 4px;
-
   width: fit-content;
   height: fit-content;
   padding: 1.5rem;
   margin: 0 auto;
 }
-
-.left_section {
-  background-color: hsl(217, 28%, 79%);
+.container {
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: start;
+  flex: 1;
+}
+  /*Long and Lat input*/
+.long_lat_input {
+  background-color: rgba(229,229,229,255);
   flex: 0 1 auto;
   margin: 1rem;
-  padding: 1.5rem;
-}
-
-.right_section {
-  /*max-width: 450px;
-    specific width mentioned in lecutre but does not directly match lab assignment page*/
-  background-color: hsl(217, 28%, 79%);
-  flex: 1 2 auto;
-  margin: 1rem;
-  align-items: center; /*flex-start in media mode*/
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
+  /*Map*/
+#map {
+  width: 400px;
+  height: 380px;
+  margin-bottom: 1rem;
+}
+  /*Submission Button*/
+.button {
+  font-family: "Courier New", monospace;
+  font-size: 24px;
+  padding: 14px 40px;
+  border-radius: 12px;
+}
+.button:hover {
+  background-color:hsl(216, 90%, 30%);
+  color: white;
+}
 
-/*
-    This block is actually dependent on the "container" block having a flex set on it
-    and the "wrapper" block displaying as a flex column with a "vertical height" (vh) of 100.
-    That serves to cram the footer to the bottom of the page.
-  */
 
+/*Footer*/
 .footer {
   flex-shrink: 0;
   padding: 1rem;
@@ -145,12 +147,10 @@ h2,h3 {
   border: 2px dotted;
   background: white;
 }
-
 .footer a {
-  color: hsl(217, 28%, 79%);
+  color: rgba(229,229,229,255);
   text-decoration: underline;
 }
-
 /*
     This is an example of a 'pseudoclass'
     In this instance, it says what to do if a mouse hovers over a link
@@ -158,43 +158,10 @@ h2,h3 {
   */
 .footer a:hover {
   /* Hue, saturation, luminosity, alpha */
-  background-color: hsl(217, 28%, 79%);
+  background-color: rgba(229,229,229,255);
   /* red, green, blue, alpha */
-  color: hsl(217, 28%, 79%);
+  color: hsl(216, 90%, 30%);
   text-decoration: none;
-}
-
-.subtitle {
-  color: hsl(217, 28%, 79%);
-  margin: 0px;
-  margin-bottom: 5px;
-}
-/*
-  Form Styles
-  */
-
-form input {
-  /* This is a hack to make sure our boxes line up with one another nicely */
-  width: 100%;
-  width: -moz-available; /* WebKit-based browsers will ignore this. */
-  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  width: fill-available;
-
-  /* here we are setting white space correctly */
-  margin-bottom: 1rem;
-  height: 2rem;
-  border-radius: 4px;
-}
-
-form label {
-  width: 100%;
-  width: -moz-available; /* WebKit-based browsers will ignore this. */
-  width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  width: fill-available;
-  align-items: flex-start;
-
-  display: block; /* this turns the label text into a box we can set margins on */
-  margin-bottom: 0.5rem;
 }
 
 /* How To Write A Media Query For Small Screens */
@@ -245,3 +212,34 @@ form label {
 /*form {
     accent-color: hsl(129, 100%, 50%);
   }*/
+/*.subtitle {
+  color: hsl(217, 28%, 79%);
+  margin: 0px;
+  margin-bottom: 5px;
+}*/
+
+/*
+  Form Styles
+  */
+/*form input {
+  /* This is a hack to make sure our boxes line up with one another nicely */
+  /*width: 100%;
+  /*width: -moz-available; /* WebKit-based browsers will ignore this. */
+  /*width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  /*width: fill-available;
+
+  /* here we are setting white space correctly */
+  /*margin-bottom: 1rem;
+  height: 2rem;
+  border-radius: 4px;
+}*/
+/*form label {
+  width: 100%;
+  width: -moz-available; /* WebKit-based browsers will ignore this. */
+  /*width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  /*width: fill-available;
+  align-items: flex-start;
+
+  display: block; /* this turns the label text into a box we can set margins on */
+  /*margin-bottom: 0.5rem;
+}*/

@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mabel Chang's Final Project</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <link rel="stylesheet" href="style.css" />
+  
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
   </head>
 
   <body>
@@ -16,8 +20,10 @@
         <div>Horizon View</div>
       </header>
 
+      <!--Menu Button-->
       <div>
         <button class="menu_button"><img src="menu_image.png"/></button>
+        <!--Dropdown menu not working right now-->
         <div class="menu_content">
           <a href="./pages/about">About</a>
           <a href="./pages/tracker">Tracker</a>
@@ -25,34 +31,42 @@
       </div>
     </banner>
 
+    <!--MAIN BODY-->
     <div class="wrapper">
-      <div class="title">
+      <!--Page title-->
+      <div>
         <h2>Home</h2>
       </div>
-
+      
+      <!--Long Lat inputs from the user-->
       <div class="container">
-        <div class="left_section box">
-          <h3>Form Inputs</h3>
-          <form class="box main_form">
-            <div>
-              <label for="resto">****** Do not need action in the form</label>
-              <input type="text" id="resto" name="resto" />
-            </div>
-            <button type="submit">Load Data</button>
-            <button type="button" class="filter_button">Filter Data</button>
-          </form>
+        <div class="long_lat_input box">
+          <h3>Longitude</h3>
+          <div class="input_longitude">
+            <input type="text" id="in_long" name="in_long" />
+          </div>
         </div>
 
-        <div class="right_section box">
-          <h3>Local Restaurants</h3>
-          <div class="box">
-            <div class="restaurant_list">
-              A list of local restuarants from an API
-            </div>
+        <div class="long_lat_input box">
+          <h3>Latitude</h3>
+          <div class="input_latitude">
+            <input type="text" id="in_lat" name="in_lat" />
           </div>
         </div>
       </div>
+
+      <!--Map-->
+      <div class="container">
+        <div id="map" class="box"></div>
+      </div>
+
+      <!--Submission Button-->
+      <div class="container">
+        <button class="button" type="button" id="submit">Submit</button>
+      </div>
     </div>
+
+    <!--Footer-->
     <footer class="footer a">
       Mabel Chang's INST377 Final Project:
       <a
@@ -62,6 +76,7 @@
         >mabel-chang</a
       >
     </footer>
+
     <script src="./script.js"></script>
   </body>
 </html>
