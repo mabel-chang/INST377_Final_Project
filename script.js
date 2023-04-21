@@ -100,19 +100,99 @@ function setViewWindow(array, map){
 }
 */
 
+function checkLongLat(long, lat){
+  if(long && lat){
+    return(1);
+  } else if (long == 0 && lat){
+    return(1);
+  } else if (long && lat == 0){
+    return(1);
+  } else if (long == 0 && long == 0){
+    return(1);
+  } else {
+    return(0);
+  }
+}
+
 async function mainEvent() {
   console.log('localStorage check', localStorage.getItem("storedData"));
   const aboutButton = document.querySelector("#aboutButton");
-
   const inLongitude = document.querySelector("#in_long");
   const inLatitidue = document.querySelector("#in_lat");
   const submitButton = document.querySelector("#submit");
-  
+  const errorMessage = document.querySelector("#error_message");
+  let in_lat;
+  let in_long;
+
+  /*Hide the error message*/
+  errorMessage.classList.add="hidden";
+
+  /*Initiate the map*/
+  const carto = initMap();
+
+  /*Set up about button*/
   aboutButton.addEventListener("click", (event) => {
     location.href="./pages/about";
   })
 
-  const carto = initMap();
+  /*Take input from text input (long and lat)*/
+  inLongitude.addEventListener("input", (event) => {
+    console.log("LONG INPUT: ", event.target.value);
+    in_long = event.target.value;
+   
+    result = checkLongLat(in_long, in_lat);
+    /*if(result == 1){
+
+    } else {
+      errorMessage.classList.remove="hidden";
+    }*/
+
+    //const newList = filterList(currentList, event.target.value);
+    //injectHTML(newList);
+    //console.log(newList);
+    //markerPlace(newList, carto);
+    //setViewWindow(newList, carto);
+  });
+  inLatitidue.addEventListener("input", (event) => {
+    console.log("LAT INPUT: ", event.target.value);
+    in_lat = event.target.value;
+
+    result = checkLongLat(in_long, in_lat);
+
+    //const newList = filterList(currentList, event.target.value);
+    //injectHTML(newList);
+    //console.log(newList);
+    //markerPlace(newList, carto);
+    //setViewWindow(newList, carto);
+  });
+
+ /* submitButton.addEventListener("click", async (submitEvent) => {
+    console.log("Loading Data");
+    result = checkLongLat(in_long, in_lat);
+
+    if(result == 1){
+
+    } else {
+      errorMessage.classList.remove="hidden";
+
+    }
+    
+    location.href="./pages/tracker";
+    const results = await fetch(
+      "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
+    );
+    const storedList = await results.json();
+
+    localStorage.setItem("storedData", JSON.stringify(storedList));
+    parsedData = storedList;
+
+    if(storedList?.length > 0){
+      generateListButton.classList.remove("hidden");
+    }
+
+    loadAnimation.style.display = "none";
+    // consoe.tabe(storedist);
+  });*/
 
   /*const storedData = localStorage.getItem("storedData");
 
@@ -142,33 +222,7 @@ async function mainEvent() {
 
     loadAnimation.style.display = "none";
     // consoe.tabe(storedist);
-  });
-
-  generateListButton.addEventListener("click", (event) => {
-    console.log("generate new list");
-    currentList = cutRestaurantList(parsedData);
-    console.log(currentList);
-    injectHTML(currentList);
-    markerPlace(currentList, carto);
-    setViewWindow(currentList, carto);
-  });
-
-  textField.addEventListener("input", (event) => {
-    console.log("INPUT", event.target.value);
-    const newList = filterList(currentList, event.target.value);
-    
-    injectHTML(newList);
-    console.log(newList);
-    markerPlace(newList, carto);
-    setViewWindow(newList, carto);
-  });
-
-  clearDataButton.addEventListener("click", (event) => {
-    console.log('clear browser data');
-    localStorage.clear();
-    console.log('localStorage check', localStorage.getItem("storedData"));
-    generateListButton.classList.add("hidden");
-  })*/
+  });*/
 }
 
 document.addEventListener("DOMContentLoaded", async () => mainEvent());
