@@ -1,3 +1,19 @@
+/*
+getting the PM or AM from the number:
+  to convert into datetime and integers:
+    hms = the api output
+      remove am/pm:
+        new_hms = hms.subtring(0, hms.length-3)
+      add an extra zero in front:
+        if(new_hms.length != 8){
+          new_hms = "0" + new_hms;
+        }
+    var target = new Date("1970-01-01T" + hms)
+  hms.substring(hms.length-2, hms.llength-1)); <-- gets you the second to last characted(p or m)
+
+  get night lenght
+ minus 23:59:60
+  */
 /* A quick filter that will return something based on a matching input */
 function calculateLengthOfNight(dayLength) {
   
