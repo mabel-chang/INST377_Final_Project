@@ -130,7 +130,7 @@ async function mainEvent() {
   /*Initiate the map*/
   const carto = initMap();
 
-  /*Set up about button*/
+  /*Set up About button*/
   aboutButton.addEventListener("click", (event) => {
     location.href="./pages/about";
   })
