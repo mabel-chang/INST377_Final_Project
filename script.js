@@ -21,6 +21,10 @@ Response if you submit without putting any information in (standard input needed
     To do this you would need to run the API first thing as they open the page
     This will get the long and lat of the current location and move the map there
   Can just have a standard long/lat that you will input
+
+
+}
+
 Click and have all relvent info now to store the data and load onto a new page
 
 Menu Button
@@ -56,17 +60,6 @@ Menu Button
   }));
 }*/
 
-//Initiate the map to the default long/lat
-function initMap(){
-  const carto = L.map('map').setView([38.98, -76.93], 13); //long, lat
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(carto);
-  return carto;
-}
-
 /*function markerPlace(array, map){
   console.log('array for markers', array);
   
@@ -100,18 +93,34 @@ function setViewWindow(array, map){
 }
 */
 
-function checkLongLat(long, lat){
-  if(long && lat){
-    return(1);
-  } else if (long == 0 && lat){
-    return(1);
-  } else if (long && lat == 0){
-    return(1);
-  } else if (long == 0 && long == 0){
-    return(1);
-  } else {
-    return(0);
+function check_response(in_long, in_lat){
+  let c = 0;
+  if(in_long >= -180 && in_long <= 180){
+    c = c+1;
   }
+  if(in_lat >= -90 && in_long <= 90){
+    c = c+2;
+  }
+  if(c==3){
+    return 3;
+  } else if (c==1){ //correct long
+    return 1;
+  } else if (c==2){ //correct lat
+    return 2;
+  } else {
+    return 0;
+  }
+}
+
+//Initiate the map to the default long/lat
+function initMap(){
+  const carto = L.map('map').setView([38.98, -76.93], 13); //long, lat
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(carto);
+  return carto;
 }
 
 async function mainEvent() {
@@ -125,7 +134,7 @@ async function mainEvent() {
   let in_long;
 
   /*Hide the error message*/
-  errorMessage.classList.add="hidden";
+  errorMessage.style.display = "none";
 
   /*Initiate the map*/
   const carto = initMap();
@@ -139,43 +148,33 @@ async function mainEvent() {
   inLongitude.addEventListener("input", (event) => {
     console.log("LONG INPUT: ", event.target.value);
     in_long = event.target.value;
-   
-    result = checkLongLat(in_long, in_lat);
-    /*if(result == 1){
 
-    } else {
-      errorMessage.classList.remove="hidden";
-    }*/
-
-    //const newList = filterList(currentList, event.target.value);
-    //injectHTML(newList);
-    //console.log(newList);
-    //markerPlace(newList, carto);
-    //setViewWindow(newList, carto);
   });
   inLatitidue.addEventListener("input", (event) => {
     console.log("LAT INPUT: ", event.target.value);
     in_lat = event.target.value;
 
-    result = checkLongLat(in_long, in_lat);
+    const checker = check_response(in_long, in_lat);
+    if (checker >= 2){
 
-    //const newList = filterList(currentList, event.target.value);
-    //injectHTML(newList);
-    //console.log(newList);
-    //markerPlace(newList, carto);
-    //setViewWindow(newList, carto);
+    }
   });
 
- /* submitButton.addEventListener("click", async (submitEvent) => {
-    console.log("Loading Data");
-    result = checkLongLat(in_long, in_lat);
-
-    if(result == 1){
+  submitButton.addEventListener("click", (event) => {
+    /*console.log("Submit button pushed");
+    const checker = check_response(in_long, in_lat);
+    if(checker == 3){
+      localStorage.setItem('in_long', in_long);
+      localStorage.setItem('in_lat', in_lat);
 
     } else {
       errorMessage.classList.remove="hidden";
+    }*/
+    location.href="./pages/tracker";
+  })
 
-    }
+ /* submitButton.addEventListener("click", async (submitEvent) => {
+    console.log("Loading Data");
     
     location.href="./pages/tracker";
     const results = await fetch(
@@ -190,7 +189,6 @@ async function mainEvent() {
       generateListButton.classList.remove("hidden");
     }
 
-    loadAnimation.style.display = "none";
     // consoe.tabe(storedist);
   });*/
 
@@ -202,8 +200,7 @@ async function mainEvent() {
     generateListButton.classList.remove("hidden");
   }
   
-  localStorage.setItem('in_long', );
-  localStorage.setItem('in_lat', );
+
 
   submitButton.addEventListener("click", async (submitEvent) => {
     console.log("Loading Data");

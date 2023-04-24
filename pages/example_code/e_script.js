@@ -1,4 +1,4 @@
-/*function getRandomIntInclusive(min, max) {
+function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -74,61 +74,50 @@ function setViewWindow(array, map){
   }
   
   return carto;
-}*/
+}
 
 async function mainEvent() {
-  //console.log('long and lat check', localStorage.getItem("__"));
-  const test_sub = document.querySelector("#test_button");
+  console.log('localStorage check', localStorage.getItem("storedData"));
+  const mainForm = document.querySelector(".main_form");
+  const loadDataButton = document.querySelector("#data_load");
+  const generateListButton = document.querySelector("#generate");
+  const textField = document.querySelector("#resto");
+  const clearDataButton = document.querySelector("#data_clear");
+  const loadAnimation = document.querySelector("#data_load_animation");
+  
+  loadAnimation.style.display = "none";
+  generateListButton.classList.add("hidden");
 
-  //const in_long = localStorage.getItem("");
-  //const in_lat = localStorage.getItem("");
-  //var in_long = localStorage.getItem("");
-  //var in_lat = localStorage.getItem("");
-  let test_long = "-15.23456";
-  let test_lat = "10.123456";
-  const link = "https://api.sunrise-sunset.org/json?lat=${test_lat}&lng=${?{test_long}}";
-  let sunsetTime ='';
-  let info_list = [];
+  const carto = initMap();
 
-  test_sub.addEventListener("click", async (submitEvent) => {
-    console.log("API fetch");
+  const storedData = localStorage.getItem("storedData");
+  let parsedData = JSON.parse(storedData);
+  if (parsedData?.length > 0) {
+    generateListButton.classList.remove("hidden");
+  }
 
-    //loadAnimation.style.display = "inline-block";
+  let currentList = [];
+
+  loadDataButton.addEventListener("click", async (submitEvent) => {
+    console.log("Loading Data");
+    loadAnimation.style.display = "inline-block";
     const results = await fetch(
-      link
+      "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"
     );
-    //const results = await fetch(link);
+    const storedList = await results.json();
 
-    const currentList = await results.json();
-    //const anoutherList = localStorage.setItem("storedData", JSON.stringify(currentList));
-    //let parsedList = JSON.parse(anoutherList);
+    localStorage.setItem("storedData", JSON.stringify(storedList));
+    parsedData = storedList;
 
-    //let sunset = parsed.find("sunset");
-
-    //console.log("worked T__T: " + sunset);
-    //console.log("Test: " + JSON.stringify(currentList.results));
-
-    for (var key in currentList.results) {
-      info_list.push(JSON.stringify(currentList.results[key]));
-    }
-    console.log(info_list);
-    sunsetTime = info_list[9];
-    document.getElementById('temp_output').innerHTML = "Sunset Time is: " + sunsetTime;
-  //   for (var key in p) {
-  //     if (p.hasOwnProperty(key)) {
-  //         console.log(key + " -> " + p[key]);
-  //     }
-  // }
-
-    //localStorage.setItem("storedData", JSON.stringify(storedList));
-    //parsedData = storedList;
-    /*if(storedList?.length > 0){
+    if(storedList?.length > 0){
       generateListButton.classList.remove("hidden");
     }
-    loadAnimation.style.display = "none";*/
+
+    loadAnimation.style.display = "none";
+    // consoe.tabe(storedist);
   });
 
-  /*generateListButton.addEventListener("click", (event) => {
+  generateListButton.addEventListener("click", (event) => {
     console.log("generate new list");
     currentList = cutRestaurantList(parsedData);
     console.log(currentList);
@@ -152,7 +141,7 @@ async function mainEvent() {
     localStorage.clear();
     console.log('localStorage check', localStorage.getItem("storedData"));
     generateListButton.classList.add("hidden");
-  })*/
+  })
 }
 
 document.addEventListener("DOMContentLoaded", async () => mainEvent());
