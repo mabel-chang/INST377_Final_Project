@@ -17,7 +17,7 @@
         <div>Horizon View</div>
       </header>
 
-      <!--Menu Button-->
+      <!--Menu Buttons-->
       <div>
         <button class="icon" type="button" id="homeButton"><img scr="home.png"/></button>
         <button class="icon" type="button" id="aboutButton"><img src="info.png"/></button>
@@ -28,25 +28,65 @@
     <div class="wrapper">
       <!--Page title/icon-->
       <div class="icon">
-        <img src="home.png"/>
+        <img src="globe.png"/>
       </div>
-      Tracker page
 
-      <div class="button" id="test_button">
-        Test Submit Button Long: -15.23456, Lat: 10.123456
+      <div class="container">
+        <div class="box">
+          <h3>Longitude</h3>
+         <div id="long">
+          in_long
+         </div>
+        </div>
+
+        <div class="box">
+          <h3>Latitude</h3>
+          <div id='lat'>
+            in_lat
+          </div>
+        </div>
+      </div>
+
+      <div class="clock" id="curr_clock">
+        timer here
+      </div>
+
+      <div class="box button" id="prev_button">
+        Test prev Button
+      </div>
+      <div class="box button" id="next_button">
+        Test next Button
       </div>
 
       <div class="output" id="temp_output">
-        Testing output
+        testing button output
       </div>
-    </div>
 
-    <!--Footer-->
-    <footer class="footer a">
-      Mabel Chang's INST377 Final Project:
-      <a href="https://github.com/mabel-chang/INST377_Final_Project" target="_blank" rel="noopener noreferrer">mabel-chang</a>
-    </footer>
+      <div class="container">
+        <div class="box">
+          <h3>Longitude</h3>
+         <div id="oplong">
+          in_long
+         </div>
+        </div>
 
+        <div class="box">
+          <h3>Latitude</h3>
+          <div id='oplat'>
+            in_lat
+          </div>
+        </div>
+      
+        <div class="clock" id="op_clock">
+          local time
+        </div>
+        
+      <div class="box">
+        opposite side of earth
+
+      </div>
+
+      </div>
     <script src="./script.js"></script>
   </body>
 </html>

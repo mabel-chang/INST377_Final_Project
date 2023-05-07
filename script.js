@@ -122,7 +122,7 @@ async function mainEvent() {
   const carto = initMap();
 
   /*Set up About button*/
-  aboutButton.addEventListener("click", (event) => {
+  aboutButton.addEventListener("click", () => {
     location.href="./pages/about";
   })
 
@@ -167,9 +167,8 @@ async function mainEvent() {
       if (check_long == 2){
         in_long = 0;
       }
-      console.log("long lat are valid", in_long + ", " + in_lat)
-      localStorage.setItem('in_long', in_long);
-      localStorage.setItem('in_lat', in_lat);
+      localStorage.setItem("in_long", in_long);
+      localStorage.setItem("in_lat", in_lat);
     } else {
       errorMessage.style.display = "inline-block";
     }

@@ -72,8 +72,7 @@ h3 {
   flex: 1;
   padding-left: 15px;
   padding-top: 120px;
-  background-color: grey;
-
+  background: radial-gradient(#FFFEFF, #FFEEC9, #FED6BA, #E2EFF7, #D0C9D1);
 }
 .box {
   background-color: rgb(153, 153, 168);
@@ -117,7 +116,7 @@ h3 {
   height: fit-content;
   margin: 0 auto;
 }
-/*Submission Button*/
+/* Button*/
 .button {
   font-family: "Courier New", monospace;
   font-size: 24px;
@@ -126,7 +125,7 @@ h3 {
   background-color: rgb(153, 153, 168);
 }
 .button:hover {
-  background-color: hsl(216, 90%, 30%);
+  background-color: hsl(215, 77%, 24%);
   color: white;
 }
 
