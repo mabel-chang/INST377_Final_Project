@@ -51,10 +51,9 @@ function antipode (in_lat, in_long){
 }
 
 async function mainEvent() {
-  const test_sub = document.querySelector("#test_button");
   const homeButton = document.querySelector('#homeButton');
   const infoButton = document.querySelector('#aboutButton');
-  const nextButton = document.querySelector()
+  const nextButton = document.querySelector('#nextButton');
   
   let info_list = [];
  
@@ -93,14 +92,14 @@ async function mainEvent() {
   document.getElementById('oplong').innerHTML = op_long; //changing text
   document.getElementById('oplat').innerHTML = op_lat;//changing text
 
-  homeButton.addEventListener("click", () => {
+  homeButton.addEventListener("click", (event) => {
     location.href="../../";
   })
-  infoButton.addEventListener("click", () => {
+  infoButton.addEventListener("click", (event) => {
     location.href="./../about";
   })
 
-  test_sub.addEventListener("click", async (submitEvent) => {
+  nextButton.addEventListener("click", async (submitEvent) => {
     document.getElementById('temp_output').innerHTML = "Sunset Time is: " + sunset; //changing text
   });
 }
