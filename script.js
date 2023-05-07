@@ -79,7 +79,7 @@ function markerPlace(in_long, in_lat, map){
 
   map.eachLayer((layer) => {
     if(layer instanceof L.Marker){
-      layer.remove;
+      layer.remove();
     }
   });
 
