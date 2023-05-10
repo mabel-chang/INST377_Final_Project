@@ -1,5 +1,5 @@
 /*
-clock animations (occur on click to new time): 
+ animations (occur on click to new time): 
 https://editor.p5js.org/Milchreis/sketches/euDDMbdjP
 demo:
 https://editor.p5js.org/Milchreis/full/euDDMbdjP
@@ -62,8 +62,8 @@ async function mainEvent() {
  
 
   console.log("long = ", in_long, " lat = ", in_lat);
-  document.getElementById('long').innerHTML = in_long; //changing text
-  document.getElementById('lat').innerHTML = in_lat;//changing text
+  document.getElementById('inLong').innerHTML = in_long; //changing text
+  document.getElementById('inLat').innerHTML = in_lat;//changing text
 
   const link = 'https://api.sunrise-sunset.org/json?lat='+ in_lat + '&lng=' + in_long;
 
@@ -89,8 +89,8 @@ async function mainEvent() {
   const{op_lat, op_long} = antipode(in_lat, in_long);
 
   console.log("op_long= ", op_long, "op_lat = ", op_lat);
-  document.getElementById('oplong').innerHTML = op_long; //changing text
-  document.getElementById('oplat').innerHTML = op_lat;//changing text
+  document.getElementById('opLong').innerHTML = op_long; //changing text
+  document.getElementById('opLat').innerHTML = op_lat;//changing text
 
   homeButton.addEventListener("click", (event) => {
     location.href="../../";
@@ -100,7 +100,7 @@ async function mainEvent() {
   })
 
   nextButton.addEventListener("click", async (submitEvent) => {
-    document.getElementById('temp_output').innerHTML = "Sunset Time is: " + sunset; //changing text
+    document.getElementById('tempOutput').innerHTML = "Sunset Time is: " + sunset; //changing text
   });
 }
 

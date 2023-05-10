@@ -1,7 +1,38 @@
 <!--ELEMENTS
-Title:
-remove icon!
+Banner <- for later
 
+Current location:
+  long label
+  long number
+  lat label
+  lat number
+  timer (centered)
+    animation on this
+  label with "your local time" under timer
+  label of what time it is describing (sunset)
+    animation on this
+  
+Labeling (World at center of screen)
+  prev label
+  prev button
+  next label
+  next button
+  center element (box for now possible D3)
+  center globe/desaturated globe
+
+Opposide location:
+  long label
+  long number
+  lat label
+  lat number
+  timer (centered)
+    animation on this
+  label with "your local time" under timer
+  banner with opposite side of earth
+  label of what time it is describing (sunset)
+    animation on this
+
+FILP LONG AND LAT LATER!!
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +46,6 @@ remove icon!
 
   <body>
     <!--TITLE BANNER + Menu-->
-    <!--Will need to add a pop up/drop down in case info is inputted wrong-->
     <banner class="banner">
       <!--Title-->
       <header class="header">
@@ -31,62 +61,111 @@ remove icon!
 
     <!--MAIN BODY-->
     <div class="wrapper">
-      <div class="container">
-        <div class="box">
-          <h3>Longitude</h3>
-         <div id="long">
-          in_long
-         </div>
+      <!--Input Location-->
+      <div class="trackerContainer"> <!--container with tracker info-->
+        <!--Input location Coordinates-->
+        <div class="coordinates"> <!--Long and lat for current position-->
+          <div class="box">
+            Longitude
+            <div id="long">
+              in_long
+            </div>
+          </div>
+
+          <div class="box">
+            Latitude
+            <div id='lat'>
+              in_lat
+            </div>
+          </div>
         </div>
 
-        <div class="box">
-          <h3>Latitude</h3>
-          <div id='lat'>
-            in_lat
+        <!--Input location Clock-->
+        <div>
+          <div class="box" id="label"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
+            label
+          </div>
+          <div class="clock" id="inClock"> <!--Timer for current position (NEED ANIMATION)-->
+            <div id="inHour">
+              __
+            </div>
+            :
+            <div id="inMin">
+              __
+            </div>
+          </div>
+          <div class="box">
+            Your Local Time
           </div>
         </div>
       </div>
-
-      <div class="clock" id="curr_clock">
-        timer here
-      </div>
-
-      <div class="box button" id="prev_button">
-        //Test prev Button
-      </div>
-      <div class="box button" id="nextButton">
-        Test next Button
-      </div>
-
-      <div class="output" id="temp_output">
-        testing button output
-      </div>
-
-      <div class="container">
-        <div class="box">
-          <h3>Longitude</h3>
-         <div id="oplong">
-          in_long
-         </div>
-        </div>
-
-        <div class="box">
-          <h3>Latitude</h3>
-          <div id='oplat'>
-            in_lat
-          </div>
-        </div>
-      
-        <div class="clock" id="op_clock">
-          local time
+    
+      <!--CENTER-->
+      <div> 
+        <div class="parent"> <!--Main center element (NEED LOTS OF FORMATTING HERE)-->
+            <div class="button" id="prevButton"> <!--Previous Button (NEED LAYERING) (FOR MOBILE NEED SWIPE FUNCTIONALITY)-->
+              <img src="prev_button.png"/>
+            </div>
+        
+            <div id="map"> <!--Center Map with both locations (NEED LAYERING) (D3 FORMATTING T____T)-->
+              <!--place holder?-->
+              helloooo
+            </div>
+        
+            <div class="button" id="nextButton"> <!--Next Button (NEED LAYERING) (FOR MOBILE NEED SWIPE FUNCTIONALITY)-->
+              <img src="next_button.png"/>
+            </div>
         </div>
         
+        <div id="tempOutput"> <!--TEMP BUT NEED FOR TESTING :P-->
+          testing button output
+        </div>
+      </div>
+
+      <!--Opposite Location-->
+      <div class="trackerContainer"> <!--container with tracker info-->
+        <!--Input location Coordinates-->
+        <div class="coordinates"> <!--Long and lat for current position-->
+          <div class="box">
+            Longitude
+            <div id="opLong">
+              op_long
+            </div>
+          </div>
+
+          <div class="box">
+            Latitude
+            <div id='opLat'>
+              op_lat
+            </div>
+          </div>
+        </div>
+
+        <!--Input location Clock-->
+        <div>
+          <div class="box" id="label"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
+            label
+          </div>
+          <div class="clock" id="opClock"> <!--Timer for current position (NEED ANIMATION)-->
+            <div id="opHour">
+              __
+            </div>
+            :
+            <div id="opMin">
+              __
+            </div>
+          </div>
+          <div class="box">
+            Your Local Time
+          </div>
+        </div>
+      </div>
+      <!--Label for OPPOSITE SIDE OF EARTH-->
       <div class="box">
-        opposite side of earth
-
+        Opposite Side of Earth
       </div>
+    </div>
 
-      </div>
     <script src="./script.js"></script>
   </body>
 </html>
