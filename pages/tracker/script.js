@@ -24,12 +24,12 @@ transition between gradients:
 https://stackoverflow.com/questions/6542212/use-css3-transitions-with-gradient-backgrounds
 */
 /*
-keep track of where you are on the scale
+Transition through the array
 
 in correct order of array
-0, 4, 6, 8 <-- start of day
-3 <-- noon
-5, 7, 9, 3 <-- start of night
+(dawn)8, 6, 4, 0 <-- start of day //CHANGE ORDER BELOWWWWW!!!!
+2 <-- noon
+(sunset)1, 5, 7, 9 (dusk)
 
   /*const sunrise = info_list[0];
   const sunset = info_list[1];
@@ -41,7 +41,9 @@ in correct order of array
   const aTB = info_list[8]; // astronomical twilight begin and end // dawn
   const aTE = info_list[9]; //dusk/*
 */
-function moveThrough(in_list, op_list){
+let count = 0;
+
+function moveThrough(inList, op_list, count){
   let op_spec_times = getTime(op_list[count]);
   let in_spec_times = getTime(inList[count]);
   document.getElementById('inHour').innerHTML = in_spec_times.hour; //changing text in clock
@@ -50,11 +52,10 @@ function moveThrough(in_list, op_list){
   document.getElementById('opHour').innerHTML = op_spec_times.hour; //changing text in clock
   document.getElementById('opMin').innerHTML = op_spec_times.min; //changing text in clock
   document.getElementById('opAMPM').innerHTML = op_spec_times.amPm; //changing text in clock
-
 }
 
 function getTime(time){
-  let amPm = time.substring(time.length-2, time.length);
+  let amPm = time.substring(time.length-3, time.length);
   time = time.substring(0, time.length-3);
   let getNumbers = time.split(":");
   let min = getNumbers[1];
@@ -66,7 +67,7 @@ function prevSlide(count){
   if (count <= 0){
     count = 8;
   } else {
-    count = count=1;
+    count = count-1;
   }
   console.log("new count",count);
   return(count);
@@ -83,7 +84,7 @@ function nextSlide(count){
   return(count);
 }
 
-function reorder(list){
+function reorder(list){ //CHECK ORDER!!!!!!!!!!!!! AELIUGHLDUGHSUEASDFGDJSKSJHGFDFGHJDKFLVGIUFHDGBENG
   let temp_list = [];
   let out_list = [];
 
@@ -92,7 +93,7 @@ function reorder(list){
     temp_list.push(item.substring(1, item.length-1));
   })
 
-  out_list.push(temp_list[0], temp_list[4], temp_list[6], temp_list[8], temp_list[3], temp_list[5], temp_list[7], temp_list[9], temp_list[3]);
+  out_list.push(temp_list[0], temp_list[4], temp_list[6], temp_list[8], temp_list[2], temp_list[5], temp_list[7], temp_list[9], temp_list[1]);
   return out_list;
 }
 
@@ -115,7 +116,9 @@ async function mainEvent() {
   const infoButton = document.querySelector('#aboutButton');
   const nextButton = document.querySelector('#nextButton');
   const prevButton = document.querySelector('#prevButton');
-  
+  const background = document.querySelector('.wrapper');
+  const backgroundList = ['aTB', 'nTB', 'cTB', 'sunrise', 'noon', 'sunset', 'cTE', 'nTE', 'aTE'];
+  background.classList.add(backgroundList[0]);
   /*BUTTON FUNCTIONALITY*/
   //menu buttons
   homeButton.addEventListener("click", (event) => {//home button
@@ -173,20 +176,26 @@ async function mainEvent() {
   console.log("reordered", op_list);
 
   /*CLOCK*/
-  moveThrough(inList, op_list);
+  moveThrough(inList, op_list, count);
 
   /*BACKGROUND*/
 
   /*MOVING THROUGH THE LIST*/
   nextButton.addEventListener("click", () => {
-    nextSlide(count);
-    document.getElementById('tempOutput').innerHTML = "Testing" + count; //changing text
-    console.log("clicked next");
+    background.classList.remove(backgroundList[count]);
+
+    count = nextSlide(count);
+    moveThrough(inList, op_list, count);
+    background.classList.add(backgroundList[count]);
+    console.log("background count", count);
   });
   prevButton.addEventListener("click", () => {
-    prevSlide(count);
-    document.getElementById('tempOutput').innerHTML = "Testing1" + count; //changing text
-    console.log("clicked prev");
+    background.classList.remove(backgroundList[count]);
+
+    count = prevSlide(count);
+    moveThrough(inList, op_list, count);
+    background.classList.add(backgroundList[count]);
+    console.log("background count", count);
   });
 }
 

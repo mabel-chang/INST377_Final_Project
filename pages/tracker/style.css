@@ -64,9 +64,9 @@ h3 {
   display: flex;
   flex-direction: column;
   flex: 1;
-  background: radial-gradient(#FFFEFF, #FFEEC9, #FED6BA, #E2EFF7, #D0C9D1);
   padding-top: 120px;
   /*padding-left: 15px;*/
+  /* BACKGROUND COLORS HERE*/
 }
 .box {
   background-color: rgb(153, 153, 168);
@@ -117,6 +117,39 @@ h3 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+/*BACKGROUND COLORS*/
+/*day*/
+.aTB{
+  background: radial-gradient(#F7E3C8, #F4E9E7, #DFD5D6, #CBC8DD, #9BA4DB);
+}
+.nTB{
+  background: radial-gradient(#FAECDA, #F8EBDD, #E9D5CD, #D3D5E6, #ADB0D8);
+}
+.cTB{
+  background: radial-gradient(#FCF5ED, #FBECD3, #F4D6C3, #DAE2EE, #BEBDD4);
+}
+.sunrise{
+  background: radial-gradient(#FFFEFF, #FFEEC9, #FED6BA, #E2EFF7, #D0C9D1);
+}
+/*noon*/
+.noon{
+  background: radial-gradient(#FFFFFF, #E7EBEB, #C3D1E0, #A2C6DA, #79BEDB);
+}
+/*night*/
+.sunset{
+  background: radial-gradient(#FE975A, #FF7F96, #CF739A, #703575, #220E4A);
+}
+.cTE{
+  background: radial-gradient(#EF955D, #EB8A91, #B37996, #5C3E71, #191442);
+}
+.nTE{
+  background: radial-gradient(#DF9460, #D7968B, #967E92, #49486D, #101B3A);
+}
+.aTE{
+  background: radial-gradient(#D09263, #C3A186, #7A848E, #355169, #072132);
+}
+
 
 /*Main Body Formatting
 .wrapper {
