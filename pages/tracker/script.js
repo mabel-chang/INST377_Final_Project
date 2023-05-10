@@ -22,8 +22,7 @@ background: radial-gradient(#D09263, #C3A186, #7A848E, #355169, #072132); <-- Du
 
 transition between gradients:
 https://stackoverflow.com/questions/6542212/use-css3-transitions-with-gradient-backgrounds
-*/
-/*
+
 Transition through the array
 
 in correct order of array
@@ -43,7 +42,12 @@ in correct order of array
 */
 let count = 0;
 
+function clockAnimation(){
+
+}
+
 function moveThrough(inList, op_list, count){
+  const labelList = ['Astronomical Twilight Begins', 'Nautical Twilight Begins', 'Civil Twilight Begins', 'Sunrise', 'Solar Noon', 'Sunset', 'Civil Twilight Ends', 'Nautical Twilight Ends', 'Astronomical Twlight Ends'];
   let op_spec_times = getTime(op_list[count]);
   let in_spec_times = getTime(inList[count]);
   document.getElementById('inHour').innerHTML = in_spec_times.hour; //changing text in clock
@@ -52,6 +56,10 @@ function moveThrough(inList, op_list, count){
   document.getElementById('opHour').innerHTML = op_spec_times.hour; //changing text in clock
   document.getElementById('opMin').innerHTML = op_spec_times.min; //changing text in clock
   document.getElementById('opAMPM').innerHTML = op_spec_times.amPm; //changing text in clock
+
+  document.getElementById('label1').innerHTML = labelList[count]; //changing text in label
+  document.getElementById('label2').innerHTML = labelList[count]; //changing text in label
+
 }
 
 function getTime(time){

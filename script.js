@@ -171,10 +171,10 @@ async function mainEvent() {
       }
       localStorage.setItem("in_long", in_long);
       localStorage.setItem("in_lat", in_lat);
+      location.href="./pages/tracker";
     } else {
       errorMessage.style.display = "inline-block";
     }
-    location.href="./pages/tracker";
   })
 }
 

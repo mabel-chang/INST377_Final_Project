@@ -1,37 +1,4 @@
 <!--ELEMENTS
-Banner <- for later
-
-Current location:
-  long label
-  long number
-  lat label
-  lat number
-  timer (centered)
-    animation on this
-  label with "your local time" under timer
-  label of what time it is describing (sunset)
-    animation on this
-  
-Labeling (World at center of screen)
-  prev label
-  prev button
-  next label
-  next button
-  center element (box for now possible D3)
-  center globe/desaturated globe
-
-Opposide location:
-  long label
-  long number
-  lat label
-  lat number
-  timer (centered)
-    animation on this
-  label with "your local time" under timer
-  banner with opposite side of earth
-  label of what time it is describing (sunset)
-    animation on this
-
 FILP LONG AND LAT LATER!!
 -->
 <!DOCTYPE html>
@@ -42,7 +9,8 @@ FILP LONG AND LAT LATER!!
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mabel Chang's Final Project</title>
     <link rel="stylesheet" href="style.css" />
-    </head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
+  </head>
 
   <body>
     <!--TITLE BANNER + Menu-->
@@ -55,8 +23,8 @@ FILP LONG AND LAT LATER!!
       <!--Menu Buttons-->
       <div>
         <!--CHANGE THIS TO WORDS (CHANGE YOUR LOCATION, ABOUT)-->
-        <button class="icon" type="button" id="homeButton"><img scr="home.png"/></button>
-        <button class="icon" type="button" id="aboutButton"><img src="info.png"/></button>
+        <button class="icon" type="button" id="homeButton">Change Your Location</button>
+        <button class="icon" type="button" id="aboutButton">About</button>
       </div>
     </banner>
 
@@ -83,7 +51,7 @@ FILP LONG AND LAT LATER!!
 
         <!--Input location Clock-->
         <div>
-          <div class="box" id="label"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
+          <div class="box" id="label1"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
             label
           </div>
           <div class="clock" id="inClock"> <!--Timer for current position (NEED ANIMATION)-->
@@ -143,7 +111,7 @@ FILP LONG AND LAT LATER!!
 
         <!--Input location Clock-->
         <div>
-          <div class="box" id="label"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
+          <div class="box" id="label2"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
             label
           </div>
           <div class="clock" id="opClock"> <!--Timer for current position (NEED ANIMATION)-->
