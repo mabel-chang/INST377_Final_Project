@@ -105,6 +105,8 @@ function setViewWindow(in_long, in_lat, map){
 
 async function mainEvent() {
   console.log('localStorage check', localStorage.getItem("storedData"));
+  localStorage.clear();
+
   const aboutButton = document.querySelector("#aboutButton");
   const inLongitude = document.querySelector("#in_long");
   const inLatitidue = document.querySelector("#in_lat");
