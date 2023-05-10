@@ -6,6 +6,12 @@ https://editor.p5js.org/Milchreis/full/euDDMbdjP
 more code: https://github.com/Milchreis/p5.tween
 */
 /*
+center globe to show the two points (unchangeing)
+https://github.com/d3/d3-geo/blob/main/README.md#geoInterpolate
+world map:
+https://observablehq.com/@observablehq/plot-world-map
+*/
+/*
 Background gradient
 CSS:
 background: radial-gradient(#FFFEFF, #FFEEC9, #FED6BA, #E2EFF7, #D0C9D1); <-- sunrise
@@ -19,6 +25,7 @@ https://stackoverflow.com/questions/6542212/use-css3-transitions-with-gradient-b
 */
 /*
 keep track of where you are on the scale
+
 in correct order of array
 0, 4, 6, 8 <-- start of day
 3 <-- noon
@@ -33,29 +40,61 @@ in correct order of array
   const nTE = info_list[7];
   const aTB = info_list[8]; // astronomical twilight begin and end // dawn
   const aTE = info_list[9]; //dusk/*
-
-NEW ORDER!!!
-c=0
-0, 1, 2, 3, 4, 5, 6, 7, 8
-
-if(c==8){
+*/
+function moveThrough(in_list, op_list){
+  let op_spec_times = getTime(op_list[count]);
+  let in_spec_times = getTime(inList[count]);
+  document.getElementById('inHour').innerHTML = in_spec_times.hour; //changing text in clock
+  document.getElementById('inMin').innerHTML = in_spec_times.min; //changing text in clock
+  document.getElementById('inAMPM').innerHTML = in_spec_times.amPm; //changing text in clock
+  document.getElementById('opHour').innerHTML = op_spec_times.hour; //changing text in clock
+  document.getElementById('opMin').innerHTML = op_spec_times.min; //changing text in clock
+  document.getElementById('opAMPM').innerHTML = op_spec_times.amPm; //changing text in clock
 
 }
 
-CREATE FUNCTION TO REORDER THIS SHIT T__T
+function getTime(time){
+  let amPm = time.substring(time.length-2, time.length);
+  time = time.substring(0, time.length-3);
+  let getNumbers = time.split(":");
+  let min = getNumbers[1];
+  let hour = getNumbers[0];
+  return {hour, min, amPm};
+}
+function prevSlide(count){
+  console.log("current count", count);
+  if (count <= 0){
+    count = 8;
+  } else {
+    count = count=1;
+  }
+  console.log("new count",count);
+  return(count);
+}
 
-*/
-/*
-center globe to show the two points (unchangeing)
-https://github.com/d3/d3-geo/blob/main/README.md#geoInterpolate
-world map:
-https://observablehq.com/@observablehq/plot-world-map
+function nextSlide(count){
+  console.log("current count", count);
+  if (count >= 8){
+    count = 0;
+  } else {
+   count = count+1;
+  }
+  console.log("new count",count);
+  return(count);
+}
 
-*/
-/*
-parse info from API (esp with AM and PM)
-*/
+function reorder(list){
+  let temp_list = [];
+  let out_list = [];
 
+  //remove the quotation marks
+  list.forEach((item) => {
+    temp_list.push(item.substring(1, item.length-1));
+  })
+
+  out_list.push(temp_list[0], temp_list[4], temp_list[6], temp_list[8], temp_list[3], temp_list[5], temp_list[7], temp_list[9], temp_list[3]);
+  return out_list;
+}
 
 function antipode (in_lat, in_long){
   in_lat = parseFloat(in_lat);
@@ -77,47 +116,77 @@ async function mainEvent() {
   const nextButton = document.querySelector('#nextButton');
   const prevButton = document.querySelector('#prevButton');
   
-  /*GET INFO FROM API*/
-  const in_long = localStorage.getItem("in_long"); //get info from submission page
-  const in_lat = localStorage.getItem("in_lat"); //get info from submission page
-  let info_list = [];
-
-  console.log("long = ", in_long, " lat = ", in_lat);
-  document.getElementById('inLong').innerHTML = in_long; //changing text in corrdinates
-  document.getElementById('inLat').innerHTML = in_lat;//changing text in corrdinates
-
-  const link = 'https://api.sunrise-sunset.org/json?lat='+ in_lat + '&lng=' + in_long; //get link
-  const results = await fetch(
-    link
-  );
-
-  const currentList = await results.json(); //Save the results
-  for (var key in currentList.results) {
-    info_list.push(JSON.stringify(currentList.results[key]));
-  }
-  console.log(info_list);
-
-  /*GET INFO ON OPPOSITE LOCATION*/
-  const{op_lat, op_long} = antipode(in_lat, in_long);
-  console.log("op_long= ", op_long, "op_lat = ", op_lat);
-
-  document.getElementById('opLong').innerHTML = op_long; //changing text in corrdinates
-  document.getElementById('opLat').innerHTML = op_lat;//changing text in corrdinates
-
   /*BUTTON FUNCTIONALITY*/
   //menu buttons
   homeButton.addEventListener("click", (event) => {//home button
+    localStorage.clear(); //ADD THIS LINE TO THE START OF HOME PAGE AS WELL!!!
     location.href="../../";
   })
   infoButton.addEventListener("click", (event) => {//about button
     location.href="./../about";
   })
-  //going through the list
-  nextButton.addEventListener("click", async (submitEvent) => {
-    document.getElementById('tempOutput').innerHTML = "Sunset Time is: " + sunset; //changing text
+
+  /*API CALLS*/
+  /*Api call on input*/
+  const in_long = localStorage.getItem("in_long"); //get info from submission page
+  const in_lat = localStorage.getItem("in_lat"); //get info from submission page
+  
+  let inList = [];
+  console.log("long = ", in_long, " lat = ", in_lat);
+  document.getElementById('long').innerHTML = in_long; //changing text in corrdinates
+  document.getElementById('lat').innerHTML = in_lat;//changing text in corrdinates
+
+  const link = 'https://api.sunrise-sunset.org/json?lat='+ in_lat + '&lng=' + in_long; //get link
+  const in_results = await fetch(
+    link
+  );
+
+  const in_currentList = await in_results.json(); //Save the results
+  for (var key in in_currentList.results) {
+    inList.push(JSON.stringify(in_currentList.results[key]));
+  }
+  console.log(inList);
+
+  /*Api call on opposite*/
+  const{op_lat, op_long} = antipode(in_lat, in_long);
+  
+  let op_list=[];
+  console.log("op_long= ", op_long, "op_lat = ", op_lat);
+  document.getElementById('opLong').innerHTML = op_long; //changing text in corrdinates
+  document.getElementById('opLat').innerHTML = op_lat;//changing text in corrdinates
+
+  const op_link = 'https://api.sunrise-sunset.org/json?lat='+ op_lat + '&lng=' + op_long; //get link
+  const op_results = await fetch(
+    op_link
+  );
+
+  const op_currentList = await op_results.json(); //Save the results
+  for (var key in op_currentList.results) {
+    op_list.push(JSON.stringify(op_currentList.results[key]));
+  }
+  console.log(op_list);
+
+  /*REORDERED LISTS*/
+  inList = reorder(inList);
+  console.log("reordered", inList);
+  op_list = reorder(op_list);
+  console.log("reordered", op_list);
+
+  /*CLOCK*/
+  moveThrough(inList, op_list);
+
+  /*BACKGROUND*/
+
+  /*MOVING THROUGH THE LIST*/
+  nextButton.addEventListener("click", () => {
+    nextSlide(count);
+    document.getElementById('tempOutput').innerHTML = "Testing" + count; //changing text
+    console.log("clicked next");
   });
-  prevButton.addEventListener("click", async (submitEvent) => {
-    document.getElementById('tempOutput').innerHTML = "Sunset Time is: " + sunset; //changing text
+  prevButton.addEventListener("click", () => {
+    prevSlide(count);
+    document.getElementById('tempOutput').innerHTML = "Testing1" + count; //changing text
+    console.log("clicked prev");
   });
 }
 
