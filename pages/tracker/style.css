@@ -106,7 +106,6 @@ h3 {
 }
 
 .parent{
-  position: relative;
   height: 300px;
   width: 100%;
   display: flex;
@@ -115,6 +114,8 @@ h3 {
   align-items: center;
   background-image: url("./earth.png");
   background-size: 100% 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /*Main Body Formatting
