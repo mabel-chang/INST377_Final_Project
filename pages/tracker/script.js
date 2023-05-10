@@ -6,12 +6,6 @@ https://editor.p5js.org/Milchreis/full/euDDMbdjP
 more code: https://github.com/Milchreis/p5.tween
 */
 /*
-center globe to show the two points (unchangeing)
-https://github.com/d3/d3-geo/blob/main/README.md#geoInterpolate
-world map:
-https://observablehq.com/@observablehq/plot-world-map
-*/
-/*
 Background gradient
 CSS:
 background: radial-gradient(#FFFEFF, #FFEEC9, #FED6BA, #E2EFF7, #D0C9D1); <-- sunrise
@@ -42,8 +36,33 @@ in correct order of array
 */
 let count = 0;
 
-function clockAnimation(){
+function initMap(in_long, in_lat){
+  const carto = L.map('map').setView([10, 0], 2); //long, lat
 
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(carto);
+
+  return carto;
+}
+
+function rmMarkers(map){  
+  map.eachLayer((layer) => {
+    if(layer instanceof L.Marker){
+      layer.remove();
+    }
+  });
+}
+
+function markerPlace(inLong, inLat, opLong, opLat, map){
+  L.marker([opLat, opLong]).addTo(map);
+  L.marker([inLat, inLong]).addTo(map);
+
+  //map.fitBounds([[opLat, opLong],[inLat, inLong]]);
+  const polyline = L.polyline([[opLat, opLong],[inLat, inLong]], {color: 'black'}).addTo(map);
+  // zoom the map to the polyline
+  map.fitBounds(polyline.getBounds());
 }
 
 function moveThrough(inList, op_list, count){
@@ -59,7 +78,6 @@ function moveThrough(inList, op_list, count){
 
   document.getElementById('label1').innerHTML = labelList[count]; //changing text in label
   document.getElementById('label2').innerHTML = labelList[count]; //changing text in label
-
 }
 
 function getTime(time){
@@ -71,28 +89,24 @@ function getTime(time){
   return {hour, min, amPm};
 }
 function prevSlide(count){
-  console.log("current count", count);
   if (count <= 0){
     count = 8;
   } else {
     count = count-1;
   }
-  console.log("new count",count);
   return(count);
 }
 
 function nextSlide(count){
-  console.log("current count", count);
   if (count >= 8){
     count = 0;
   } else {
    count = count+1;
   }
-  console.log("new count",count);
   return(count);
 }
 
-function reorder(list){ //CHECK ORDER!!!!!!!!!!!!! AELIUGHLDUGHSUEASDFGDJSKSJHGFDFGHJDKFLVGIUFHDGBENG
+function reorder(list){
   let temp_list = [];
   let out_list = [];
 
@@ -100,8 +114,7 @@ function reorder(list){ //CHECK ORDER!!!!!!!!!!!!! AELIUGHLDUGHSUEASDFGDJSKSJHGF
   list.forEach((item) => {
     temp_list.push(item.substring(1, item.length-1));
   })
-
-  out_list.push(temp_list[0], temp_list[4], temp_list[6], temp_list[8], temp_list[2], temp_list[5], temp_list[7], temp_list[9], temp_list[1]);
+  out_list.push(temp_list[8], temp_list[6], temp_list[4], temp_list[0], temp_list[2], temp_list[1], temp_list[5], temp_list[7], temp_list[9]);
   return out_list;
 }
 
@@ -127,6 +140,7 @@ async function mainEvent() {
   const background = document.querySelector('.wrapper');
   const backgroundList = ['aTB', 'nTB', 'cTB', 'sunrise', 'noon', 'sunset', 'cTE', 'nTE', 'aTE'];
   background.classList.add(backgroundList[0]);
+
   /*BUTTON FUNCTIONALITY*/
   //menu buttons
   homeButton.addEventListener("click", (event) => {//home button
@@ -141,6 +155,10 @@ async function mainEvent() {
   /*Api call on input*/
   const in_long = localStorage.getItem("in_long"); //get info from submission page
   const in_lat = localStorage.getItem("in_lat"); //get info from submission page
+
+  /*MAP*/
+  const carto = initMap(in_long, in_lat);
+  rmMarkers(carto);
   
   let inList = [];
   console.log("long = ", in_long, " lat = ", in_lat);
@@ -156,10 +174,10 @@ async function mainEvent() {
   for (var key in in_currentList.results) {
     inList.push(JSON.stringify(in_currentList.results[key]));
   }
-  console.log(inList);
 
   /*Api call on opposite*/
   const{op_lat, op_long} = antipode(in_lat, in_long);
+  markerPlace(in_long, in_lat, op_long, op_lat, carto);
   
   let op_list=[];
   console.log("op_long= ", op_long, "op_lat = ", op_lat);
@@ -175,18 +193,13 @@ async function mainEvent() {
   for (var key in op_currentList.results) {
     op_list.push(JSON.stringify(op_currentList.results[key]));
   }
-  console.log(op_list);
 
   /*REORDERED LISTS*/
   inList = reorder(inList);
-  console.log("reordered", inList);
   op_list = reorder(op_list);
-  console.log("reordered", op_list);
 
-  /*CLOCK*/
+  /*CLOCK AND LABEL*/
   moveThrough(inList, op_list, count);
-
-  /*BACKGROUND*/
 
   /*MOVING THROUGH THE LIST*/
   nextButton.addEventListener("click", () => {

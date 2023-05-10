@@ -118,6 +118,12 @@ h3 {
   margin-bottom: 50px;
 }
 
+/*MAP*/
+#map{
+  width: 75%;
+  height: 70%;
+}
+
 /*BACKGROUND COLORS*/
 /*day*/
 .aTB{

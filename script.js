@@ -1,24 +1,3 @@
-/* REQS:
-Long/lat buttons
-As you input the long and lat, the focus of the map moves to where it is
-  Only reacts if both fields are filled
-  What if one of the feilds get delted?
-    maintain position
-Reading inputs
-parsing HTML
-inject HTML?
-Need a way that checks that the inforamtion inputted is correctly formatted
-
-Map
-As you move along the map, the long and lat changes <-- idk if i can T__T
-  not a big deal if you cant
-Need a way to store the long and lat that pops up (IDK if i can T__T)
-  if not, not a big deal and scrap the functionality of the map
-
-}
-
-Click and have all relvent info now to store the data and load onto a new page*/
-
 function checkLatInput(in_lat){
   if(in_lat == "" || in_lat == null){
     return 2; //no input
