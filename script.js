@@ -34,7 +34,7 @@ function checkLongInput(in_long){
 
 //Initiate the map to the default long/lat
 function initMap(){
-  const carto = L.map('map').setView([38.98, -76.93], 13); //long, lat
+  const carto = L.map('map').setView([10, 0], 2); //long, lat
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -77,7 +77,7 @@ function setViewWindow(in_long, in_lat, map){
     in_long = 0;
   }
 
-  carto = map.setView([in_lat, in_long], 13);
+  carto = map.setView([in_lat, in_long], 3);
 
   return carto;
 }

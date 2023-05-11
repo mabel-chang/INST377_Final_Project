@@ -5,36 +5,27 @@ demo:
 https://editor.p5js.org/Milchreis/full/euDDMbdjP
 more code: https://github.com/Milchreis/p5.tween
 */
-/*
-Background gradient
-CSS:
-background: radial-gradient(#FFFEFF, #FFEEC9, #FED6BA, #E2EFF7, #D0C9D1); <-- sunrise
-background: radial-gradient(#FE975A, #FF7F96, #CF739A, #703575, #220E4A); <-- sunset
-background: radial-gradient(#FFFFFF, #E7EBEB, #C3D1E0, #A2C6DA, #79BEDB); <-- solar noon
-background: radial-gradient(#F7E3C8, #F4E9E7, #DFD5D6, #CBC8DD, #9BA4DB); <-- Dawn
-background: radial-gradient(#D09263, #C3A186, #7A848E, #355169, #072132); <-- Dusk
-
-transition between gradients:
-https://stackoverflow.com/questions/6542212/use-css3-transitions-with-gradient-backgrounds
-
-Transition through the array
-
-in correct order of array
-(dawn)8, 6, 4, 0 <-- start of day //CHANGE ORDER BELOWWWWW!!!!
-2 <-- noon
-(sunset)1, 5, 7, 9 (dusk)
-
-  /*const sunrise = info_list[0];
-  const sunset = info_list[1];
-  const solarNoon = info_list[2];
-  const cTB = info_list[4]; // civil twilight begin and end
-  const cTE = info_list[5];
-  const nTB = info_list[6]; // nautrical twilight begin and end
-  const nTE = info_list[7];
-  const aTB = info_list[8]; // astronomical twilight begin and end // dawn
-  const aTE = info_list[9]; //dusk/*
-*/
 let count = 0;
+
+//FROM ANIMATE.STYLE
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    const node = document.querySelector(element);
+
+    node.classList.add(`${prefix}animated`, animationName);
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      //event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      console.log("animation has stopped");
+
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd);
+  });
 
 function initMap(in_long, in_lat){
   const carto = L.map('map').setView([10, 0], 2); //long, lat
@@ -138,6 +129,7 @@ async function mainEvent() {
   const nextButton = document.querySelector('#nextButton');
   const prevButton = document.querySelector('#prevButton');
   const background = document.querySelector('.wrapper');
+  
   const backgroundList = ['aTB', 'nTB', 'cTB', 'sunrise', 'noon', 'sunset', 'cTE', 'nTE', 'aTE'];
   background.classList.add(backgroundList[0]);
 
@@ -204,16 +196,20 @@ async function mainEvent() {
   /*MOVING THROUGH THE LIST*/
   nextButton.addEventListener("click", () => {
     background.classList.remove(backgroundList[count]);
-
     count = nextSlide(count);
+    animateCSS('.label', 'flipInX');
+    animateCSS('.clock', 'flipInX');
+
     moveThrough(inList, op_list, count);
     background.classList.add(backgroundList[count]);
     console.log("background count", count);
   });
   prevButton.addEventListener("click", () => {
     background.classList.remove(backgroundList[count]);
-
     count = prevSlide(count);
+    animateCSS('.label', 'flipInX');
+    animateCSS('.clock', 'flipInX');
+
     moveThrough(inList, op_list, count);
     background.classList.add(backgroundList[count]);
     console.log("background count", count);
