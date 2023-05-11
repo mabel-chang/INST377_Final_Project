@@ -1,5 +1,6 @@
 /*COLORS:
-Pop out boxes: rgba(229,229,229,255)
+font for words: 'Microsoft Yi Baiti'
+highlight color: hsl(216, 42%, 77%);
 */
 
 * {
@@ -24,7 +25,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Courier New", monospace;
+  font-family: "Microsoft Yi Baiti";
   font-weight: 400;
   line-height: 1.5;
   background-color: black;
@@ -42,25 +43,30 @@ h3 {
 /*Title Banner Formatting*/
 .banner {
   position: fixed;
-  background-color: rgb(153, 153, 168);
+  background-color: black;
   width: 100%;
   padding: 1px;
-  opacity: 70%;
+  opacity: 80%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 0 5px 10px rgb(153, 153, 168);
 }
 /*Main Title*/
 .header {
-  margin: 0 auto;
-  font-size: 300%;
-  font-weight: 600;
+  text-indent: 50px;
+  font-size: 200%;
+  font-weight: 200;
+  color: white;
 }
-/*Icon Formatting*/
-.icon img {
-  width: 70px;
-  height: 70px;
+.menu {
+  padding: 50px 10px;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  border: black;
+  padding-top: 50%;
+}
+.menu:hover{
+  background-color: hsl(216, 42%, 77%);
+  color: black;
 }
 
 /*Main Body Formatting*/
@@ -73,11 +79,11 @@ h3 {
   padding-left: 15px;
   padding-top: 120px;
   background-image: url('background.png');
-
 }
 .box {
-  background-color: rgb(153, 153, 168);
   border-radius: 4px;
+  background-color: black;
+  border-color: white;
   width: fit-content;
   height: fit-content;
   padding: 1.5rem;
@@ -92,7 +98,10 @@ h3 {
 }
 /*Long and Lat input*/
 .long_lat_input {
-  background-color: rgb(153, 153, 168);
+  background-color: black;
+  border-color: white;
+  border-style: double;
+  color: white;
   flex: 0 1 auto;
   margin: 1rem;
   align-items: center;
@@ -123,11 +132,13 @@ h3 {
   font-size: 24px;
   padding: 14px 40px;
   border-radius: 12px;
-  background-color: rgb(153, 153, 168);
+  border-color: white;
+  background-color: rgb(59, 59, 59);
+  color: white;
 }
 .button:hover {
-  background-color: hsl(216, 90%, 30%);
-  color: white;
+  background-color: hsl(216, 42%, 77%);
+  color: black;
 }
 
 /*Footer*/
