@@ -1,10 +1,3 @@
-/*
- animations (occur on click to new time): 
-https://editor.p5js.org/Milchreis/sketches/euDDMbdjP
-demo:
-https://editor.p5js.org/Milchreis/full/euDDMbdjP
-more code: https://github.com/Milchreis/p5.tween
-*/
 let count = 0;
 
 //FROM ANIMATE.STYLE
