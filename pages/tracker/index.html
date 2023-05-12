@@ -1,6 +1,3 @@
-<!--ELEMENTS
-FILP LONG AND LAT LATER!!
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,135 +5,128 @@ FILP LONG AND LAT LATER!!
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mabel Chang's Final Project</title>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <!--Libraries-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    
+    <link rel="stylesheet" href="style.css" />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
   </head>
 
   <body>
-    <!--TITLE BANNER + Menu-->
+    <!--BANNER-->
     <banner class="banner">
       <!--Title-->
       <header class="header">
         <div>Horizon View</div>
       </header>
-
-      <!--Menu Buttons-->
+      <!--Menu-->
       <div>
-        <!--CHANGE THIS TO WORDS (CHANGE YOUR LOCATION, ABOUT)-->
-        <button class="menu" type="button" id="homeButton">Change Your Location</button>
+        <button class="menu" type="button" id="homeButton">
+          Change Your Location
+        </button>
         <button class="menu" type="button" id="aboutButton">About</button>
       </div>
     </banner>
 
     <!--MAIN BODY-->
     <div class="wrapper">
-      <!--Input Location-->
-      <div class="trackerContainer"> <!--container with tracker info-->
+      <!--INPUT LOCATION-->
+      <!--Tracker Info-->
+      <div class="trackerContainer">
         <!--Input location Coordinates-->
-        <div class="coordinates"> <!--Long and lat for current position-->
+        <div class="coordinates">
           <div class="box">
             Latitude
-            <div id='lat'>
-              in_lat
-            </div>
+            <div id="lat">in_lat</div>
           </div>
-
           <div class="box">
             Longitude
-            <div id="long">
-              in_long
-            </div>
+            <div id="long">in_long</div>
           </div>
         </div>
 
         <!--Input location Clock-->
         <div>
-          <div class="label" id="label1"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
+          <div class="label" id="label1">
             label
           </div>
-          <div class="clock 1" id="inClock"> <!--Timer for current position (NEED ANIMATION)-->
-            <div id="inHour">
-              __
-            </div>
+          <div class="clock 1" id="inClock">
+            <div id="inHour">__</div>
             :
-            <div id="inMin">
-              __
-            </div>
-            <div id="inAMPM">
-              AM
-            </div>
+            <div id="inMin">__</div>
+            <div id="inAMPM">AM</div>
           </div>
-          <div class="label">
-            Your Local Time
-          </div>
-        </div>
-      </div>
-    
-      <!--CENTER-->
-      <div> 
-        <div class="parent"> <!--Main center element (NEED LOTS OF FORMATTING HERE)-->
-            <div class="button" id="prevButton"> <!--Previous Button (NEED LAYERING) (FOR MOBILE NEED SWIPE FUNCTIONALITY)-->
-              <img src="prev_button.png"/>
-            </div>
-        
-            <div id="map" class="box"> <!--Center Map with both locations (NEED LAYERING) (D3 FORMATTING T____T)-->
-            </div>
-        
-            <div class="button" id="nextButton"> <!--Next Button (NEED LAYERING) (FOR MOBILE NEED SWIPE FUNCTIONALITY)-->
-              <img src="next_button.png"/>
-            </div>
+          <div class="label">Your Local Time</div>
         </div>
       </div>
 
-      <!--Opposite Location-->
-      <div class="trackerContainer"> <!--container with tracker info-->
+      <!--CENTER-->
+      <div>
+        <!--Main Center Parent-->
+        <div class="parent">
+          <!--Interactive Elements-->
+          <!--Button-->
+          <div class="button" id="prevButton">
+            <img src="prev_button.png" />
+          </div>
+          <!--Center Map-->
+          <div id="map" class="box"></div>
+          <!--Button-->
+          <div class="button" id="nextButton">
+            <img src="next_button.png" />
+          </div>
+        </div>
+      </div>
+
+      <!--OPPOSITE LOCATION-->
+      <!--Tracker Info-->
+      <div class="trackerContainer">
         <!--Ouput location Clock-->
         <div>
-          <div class="label" id="label2"> <!--Label for what the time is describing (ex. sunset) (NEED ANIMATION)-->
+          <div class="label" id="label2">
             label
           </div>
-          <div class="clock 2" id="opClock"> <!--Timer for current position (NEED ANIMATION)-->
-            <div id="opHour">
-              __
-            </div>
+          <div class="clock 2" id="opClock">
+            <div id="opHour">__</div>
             :
-            <div id="opMin">
-              __
-            </div>
-            <div id="opAMPM">
-              AM
-            </div>
+            <div id="opMin">__</div>
+            <div id="opAMPM">AM</div>
           </div>
-          <div class="label">
-            Your Local Time
-          </div>
+          <div class="label">Your Local Time</div>
         </div>
 
-        <!--Input location Coordinates-->
-        <div class="coordinates"> <!--Long and lat for current position-->
+        <!--Opposite Location Coordinates-->
+        <div class="coordinates">
           <div class="box">
             Latitude
-            <div id='opLat'>
-              op_lat
-            </div>
+            <div id="opLat">op_lat</div>
           </div>
 
           <div class="box">
             Longitude
-            <div id="opLong">
-              op_long
-            </div>
+            <div id="opLong">op_long</div>
           </div>
         </div>
       </div>
-      <!--Label for OPPOSITE SIDE OF EARTH-->
-      <div class="main label">
-        Opposite Side of Earth
-      </div>
+
+      <!--Bottom Banner-->
+      <div class="main label">Opposite Side of Earth</div>
     </div>
 
     <script src="./script.js"></script>
