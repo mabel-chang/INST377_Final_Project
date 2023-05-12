@@ -105,7 +105,15 @@ h2,h3 {
 .img{
   text-align: center;
 }
-
+.paragraph a {
+  color:hsl(216, 42%, 77%);
+  text-decoration: underline;
+}
+.paragraph a:hover{
+  color:black;
+  background-color: hsl(216, 42%, 77%);
+  text-decoration: none;
+}
 /* How To Write A Media Query For Small Screens */
 /*@media only screen and (max-width: 736px) {
   /* Rules in here will only apply when a screen is the correct size */
