@@ -1,20 +1,13 @@
-/*COLORS:
-font for words: 'Microsoft Yi Baiti'
-highlight color: hsl(216, 42%, 77%);
-*/
-
 * {
   box-sizing: border-box;
 }
-/*  background-image: 'background.png';
-*/
-/*General Formatting*/
+
+/*GENERAL*/
 html {
   font-size: 16px;
   min-width: 300px;
   overflow-x: hidden;
   overflow-y: scroll;
-  /* these are specific to different browsers */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -36,11 +29,8 @@ h3 {
   padding: 0;
   padding-bottom: 1.5rem;
 }
-.hidden {
-  display: none;
-}
 
-/*Title Banner Formatting*/
+/*BANNER*/
 .banner {
   position: fixed;
   background-color: black;
@@ -57,6 +47,7 @@ h3 {
   font-weight: 200;
   color: white;
 }
+/*Menu*/
 .menu {
   padding: 50px 10px;
   color: white;
@@ -69,7 +60,7 @@ h3 {
   color: black;
 }
 
-/*Main Body Formatting*/
+/*MAIN BODY*/
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -126,6 +117,9 @@ h3 {
   height: fit-content;
   margin: 0 auto;
 }
+.hidden {
+  display: none;
+}
 /*Submission Button*/
 .button {
   font-family: "Courier New", monospace;
@@ -140,95 +134,3 @@ h3 {
   background-color: hsl(216, 42%, 77%);
   color: black;
 }
-
-/*Footer*/
-.footer {
-  flex-shrink: 0;
-  height: 20px;
-  /*background-color:aliceblue;*/
-  /*box-shadow: 5px, -60px, 20px, white;*/
-
-  background-image: linear-gradient(black,#98b3ee);
-  border-top-right-radius: 50%;
-  border-top-left-radius: 50%;
-}
-
-/* How To Write A Media Query For Small Screens */
-/*@media only screen and (max-width: 736px) {
-  /* Rules in here will only apply when a screen is the correct size */
-/* check it out by using your developer tools to shrink your screen-size */
-/*.container {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 20px;
-    display: flex;
-    flex: 1;
-  }
-
-  .box {
-    background-color: hsl(217, 28%, 79%);
-    border: 2px dashed;
-    border-radius: 4px;
-
-    width: fit-content;
-    height: fit-content;
-    padding: 1.5rem;
-    margin: 0 auto;
-  }
-
-  .left_section {
-    background-color: hsl(217, 28%, 79%);
-    flex: 0 1 auto;
-    margin: 1rem;
-    padding: 1.5rem;
-    width: 94%;
-  }
-
-  .right_section {
-    /*max-width: 450px;
-        specific width mentioned in lecutre but does not directly match lab assignment page*/
-/*background-color: hsl(217, 28%, 79%);
-    flex: 1 2 auto;
-    margin: 1rem;
-    align-items: flex-start; /*flex-start in media mode*/
-/*display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 94%;
-  }
-}*/
-/*form {
-    accent-color: hsl(129, 100%, 50%);
-  }*/
-/*.subtitle {
-  color: hsl(217, 28%, 79%);
-  margin: 0px;
-  margin-bottom: 5px;
-}*/
-
-/*
-  Form Styles
-  */
-/*form input {
-  /* This is a hack to make sure our boxes line up with one another nicely */
-/*width: 100%;
-  /*width: -moz-available; /* WebKit-based browsers will ignore this. */
-/*width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-/*width: fill-available;
-
-  /* here we are setting white space correctly */
-/*margin-bottom: 1rem;
-  height: 2rem;
-  border-radius: 4px;
-}*/
-/*form label {
-  width: 100%;
-  width: -moz-available; /* WebKit-based browsers will ignore this. */
-/*width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-/*width: fill-available;
-  align-items: flex-start;
-
-  display: block; /* this turns the label text into a box we can set margins on */
-/*margin-bottom: 0.5rem;
-}*/
